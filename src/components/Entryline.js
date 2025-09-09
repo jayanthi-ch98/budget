@@ -1,9 +1,14 @@
-import React from 'react'
-import { Grid, Icon, Segment } from 'semantic-ui-react'
+import { React } from "react";
+import { Grid, Icon, Segment } from "semantic-ui-react";
 function Entryline(props) {
-    const {Description,Value,isExpense}=props
+  const {
+    entry: { id, Description, Value, isExpense = false },
+    deleteEntry,
+    editEntry,
+  } = props;
   return (
-   <Segment color={isExpense?"red":"green"}>
+    <>
+      <Segment color={isExpense ? "red" : "green"}>
         <Grid columns={3}>
           <Grid.Row>
             <Grid.Column width={10} textAlign="left">
@@ -13,13 +18,14 @@ function Entryline(props) {
               {Value}
             </Grid.Column>
             <Grid.Column width={3} textAlign="right">
-              <Icon name="edit" bordered></Icon>
-              <Icon name="trash" />
+              <Icon name="edit" onClick={() => editEntry(id)} bordered></Icon>
+              <Icon name="trash" onClick={() => deleteEntry(id)} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>
-  )
+    </>
+  );
 }
 
-export default Entryline
+export default Entryline;
