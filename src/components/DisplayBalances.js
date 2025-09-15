@@ -1,32 +1,32 @@
-import React from 'react'
-import { Grid,Segment } from 'semantic-ui-react'
-import DisplayBalance from './DisplayBalance'
+import React from "react";
+import { Grid, Segment } from "semantic-ui-react";
+import DisplayBalance from "./DisplayBalance";
 
-function DisplayBalances() {
+function DisplayBalances({ income, expense }) {
   return (
-      <Segment textAlign="center">
-        <Grid columns={2} divided>
-          <Grid.Row>
-            <Grid.Column>
-              <DisplayBalance
-                size="tiny"
-                Label="Incoming"
-                Value="1045.0"
-                color="green"
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <DisplayBalance
-                size="tiny"
-                Label="Expenses"
-                Value="1045.0"
-                color="red"
-              />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Segment>
-  )
+    <Segment textAlign="center">
+      <Grid columns={2} divided>
+        <Grid.Row>
+          <Grid.Column>
+            <DisplayBalance
+              size="tiny"
+              Label="Incoming"
+              Value={income}
+              color="green"
+            />
+          </Grid.Column>
+          <Grid.Column>
+            <DisplayBalance
+              size="tiny"
+              Label="Expenses"
+              Value={expense}
+              color="red"
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
+  );
 }
 
-export default DisplayBalances
+export default DisplayBalances;

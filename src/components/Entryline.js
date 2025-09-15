@@ -1,9 +1,16 @@
-import React from 'react'
-import { Grid, Icon, Segment } from 'semantic-ui-react'
+import { React } from "react";
+import { Grid, Icon, Segment } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { deleteEntryReducer } from "./actions/entries.actions";
 function Entryline(props) {
-    const {Description,Value,isExpense}=props
+  const {
+    entry: { id, Description, Value, isExpense = false },
+    editEntry,
+  } = props;
+  const dispatch = useDispatch();
   return (
-   <Segment color={isExpense?"red":"green"}>
+    <>
+      <Segment color={isExpense ? "red" : "green"}>
         <Grid columns={3}>
           <Grid.Row>
             <Grid.Column width={10} textAlign="left">
@@ -13,13 +20,17 @@ function Entryline(props) {
               {Value}
             </Grid.Column>
             <Grid.Column width={3} textAlign="right">
-              <Icon name="edit" bordered></Icon>
-              <Icon name="trash" />
+              <Icon name="edit" onClick={() => editEntry(id)} bordered></Icon>
+              <Icon
+                name="trash"
+                onClick={() => dispatch(deleteEntryReducer(id))}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>
-  )
+    </>
+  );
 }
 
-export default Entryline
+export default Entryline;
